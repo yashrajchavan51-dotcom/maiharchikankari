@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maihar Chikankari — Authentic Lucknowi Chikankari, Thane</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory: #f6f1e6;
+    --ivory-deep: #efe7d6;
+    --ink: #2a2c25;
+    --thread: #3f5b45;
+    --thread-deep: #2c4231;
+    --rose: #b5586a;
+    --gold: #c39a54;
+    --line: rgba(42,44,37,0.14);
+    --max: 1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+  h1,h2,h3,.display{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    color:var(--thread-deep);
+    letter-spacing:0.01em;
+    margin:0;
+  }
+  a{color:inherit;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+
+  /* ---------- texture: fine dot-stitch background ---------- */
+  .stitch-bg{
+    background-image:
+      radial-gradient(circle, rgba(42,44,37,0.06) 0.7px, transparent 0.7px);
+    background-size: 14px 14px;
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,241,230,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:var(--max); margin:0 auto;
+  }
+  .brand{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.5rem; font-weight:600; color:var(--thread-deep);
+    letter-spacing:0.03em;
+  }
+  .brand em{font-style:italic; color:var(--rose); font-weight:500;}
+  .nav-links{display:flex; gap:36px; font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase;}
+  .nav-links a{text-decoration:none; color:var(--ink); opacity:0.75; transition:opacity .2s, color .2s;}
+  .nav-links a:hover, .nav-links a:focus-visible{opacity:1; color:var(--thread-deep);}
+  .nav-links a:focus-visible{outline:2px solid var(--rose); outline-offset:4px;}
+  .menu-btn{display:none;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:96px 0 88px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.1fr 0.9fr; gap:56px; align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--thread); margin-bottom:22px;
+  }
+  .eyebrow::before{content:""; width:28px; height:1px; background:var(--gold);}
+  .hero h1{
+    font-size:clamp(2.6rem, 5vw, 4.3rem);
+    line-height:1.05;
+  }
+  .hero h1 .accent{color:var(--rose); font-style:italic;}
+  .hero p.lede{
+    margin-top:24px; max-width:44ch;
+    font-size:1.08rem; color:rgba(42,44,37,0.78);
+  }
+  .hero-ctas{margin-top:38px; display:flex; gap:18px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block; padding:14px 30px;
+    font-size:0.82rem; letter-spacing:0.1em; text-transform:uppercase;
+    text-decoration:none; border-radius:2px; transition:all .25s ease;
+  }
+  .btn-primary{background:var(--thread-deep); color:var(--ivory); border:1px solid var(--thread-deep);}
+  .btn-primary:hover{background:var(--thread); border-color:var(--thread);}
+  .btn-ghost{border:1px solid var(--ink); color:var(--ink); opacity:0.85;}
+  .btn-ghost:hover{opacity:1; border-color:var(--rose); color:var(--rose);}
+
+  .hero-motif{
+    position:relative; aspect-ratio:1/1.05;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hero-motif svg{width:100%; height:100%;}
+  .hero-motif .ring{
+    position:absolute; inset:6%;
+    border:1px solid var(--line); border-radius:50%;
+  }
+
+  /* signature stitched paisley divider */
+  .stitch-divider{
+    display:flex; align-items:center; justify-content:center; gap:18px;
+    margin:0 auto; padding:6px 0;
+    max-width:var(--max);
+  }
+  .stitch-divider svg{flex-shrink:0;}
+  .stitch-divider .rule{height:1px; flex:1; background:var(--line);}
+
+  .motif-path{
+    stroke:var(--thread-deep);
+    stroke-width:1.1;
+    fill:none;
+    stroke-linecap:round;
+    stroke-dasharray:600;
+    stroke-dashoffset:600;
+    animation:stitchIn 2.4s ease forwards;
+  }
+  .motif-path.rose{stroke:var(--rose);}
+  .motif-path.gold{stroke:var(--gold);}
+  @keyframes stitchIn{ to{ stroke-dashoffset:0; } }
+
+  /* ---------- section shell ---------- */
+  section{padding:96px 0;}
+  .section-head{max-width:640px; margin:0 auto 56px; text-align:center;}
+  .section-head .eyebrow{justify-content:center;}
+  .section-head .eyebrow::before{display:none;}
+  .section-head h2{font-size:clamp(2rem, 3.4vw, 2.8rem);}
+  .section-head p{margin-top:16px; color:rgba(42,44,37,0.72); font-size:1.02rem;}
+
+  /* ---------- about / heritage ---------- */
+  .about{background:var(--ivory-deep);}
+  .about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:center;}
+  .about-panel{
+    aspect-ratio:4/5; border-radius:2px;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(255,255,255,0.5), transparent 55%),
+      linear-gradient(160deg, #efe6d2, #e2d6b8 55%, #d8c9a3);
+    position:relative; overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .about-panel svg{position:absolute; inset:0; width:100%; height:100%; opacity:0.9;}
+  .about-copy h2{margin-bottom:22px;}
+  .about-copy p{color:rgba(42,44,37,0.78); margin-bottom:16px; max-width:56ch;}
+  .about-stats{display:flex; gap:44px; margin-top:32px; flex-wrap:wrap;}
+  .about-stats div{border-left:1px solid var(--gold); padding-left:16px;}
+  .about-stats .num{font-family:'Cormorant Garamond', serif; font-size:1.9rem; color:var(--thread-deep); display:block;}
+  .about-stats .lbl{font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; color:rgba(42,44,37,0.6);}
+
+  /* ---------- collections ---------- */
+  .collections-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:28px;}
+  .coll-card{
+    background:var(--ivory); border:1px solid var(--line);
+    padding:0; overflow:hidden; transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .coll-card:hover{transform:translateY(-6px); box-shadow:0 18px 40px -22px rgba(42,44,37,0.35);}
+  .coll-media{
+    aspect-ratio:4/5; position:relative;
+    background:linear-gradient(150deg, #f1ead9, #e6dcc2);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .coll-media svg{width:56%; height:56%; opacity:0.85;}
+  .coll-body{padding:26px 26px 30px;}
+  .coll-body .tag{font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--rose);}
+  .coll-body h3{margin-top:8px; font-size:1.55rem;}
+  .coll-body p{margin-top:10px; font-size:0.92rem; color:rgba(42,44,37,0.7);}
+
+  /* ---------- craft / process ---------- */
+  .craft{background:var(--thread-deep); color:var(--ivory);}
+  .craft h2, .craft .eyebrow{color:var(--ivory);}
+  .craft .section-head p{color:rgba(246,241,230,0.75);}
+  .craft-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:40px; margin-top:20px;}
+  .craft-item{text-align:center; padding:0 12px;}
+  .craft-item svg{width:64px; height:64px; margin-bottom:20px; stroke:var(--gold);}
+  .craft-item h3{color:var(--ivory); font-size:1.35rem; margin-bottom:10px;}
+  .craft-item p{color:rgba(246,241,230,0.68); font-size:0.92rem;}
+
+  /* ---------- visit ---------- */
+  .visit-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:stretch;}
+  .visit-card{
+    background:var(--ivory-deep); border:1px solid var(--line);
+    padding:44px; display:flex; flex-direction:column; justify-content:center;
+  }
+  .visit-card h2{margin-bottom:18px;}
+  .visit-line{display:flex; gap:14px; margin-top:18px; align-items:flex-start;}
+  .visit-line svg{flex-shrink:0; margin-top:3px; width:18px; height:18px; stroke:var(--rose);}
+  .visit-line p{margin:0; color:rgba(42,44,37,0.8); font-size:0.98rem;}
+  .visit-note{margin-top:26px; font-size:0.85rem; color:rgba(42,44,37,0.55); font-style:italic;}
+  .map-frame{
+    border:1px solid var(--line); position:relative; overflow:hidden;
+    background:
+      linear-gradient(0deg, rgba(42,44,37,0.05) 1px, transparent 1px) 0 0/32px 32px,
+      linear-gradient(90deg, rgba(42,44,37,0.05) 1px, transparent 1px) 0 0/32px 32px,
+      var(--ivory);
+    display:flex; align-items:center; justify-content:center; min-height:340px;
+  }
+  .map-pin{display:flex; flex-direction:column; align-items:center; gap:10px;}
+  .map-pin svg{width:40px; height:40px; stroke:var(--rose);}
+  .map-pin span{font-size:0.85rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--thread-deep);}
+
+  /* ---------- footer ---------- */
+  footer{padding:56px 0 40px; border-top:1px solid var(--line);}
+  .footer-grid{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px;}
+  .footer-grid .brand{margin-bottom:6px;}
+  footer p{font-size:0.85rem; color:rgba(42,44,37,0.55); margin:0;}
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 880px){
+    .nav-links{position:fixed; inset:64px 0 auto 0; background:var(--ivory); flex-direction:column; gap:0; padding:8px 0; border-bottom:1px solid var(--line); transform:translateY(-8px); opacity:0; pointer-events:none; transition:all .2s ease;}
+    .nav-links.open{opacity:1; transform:translateY(0); pointer-events:auto;}
+    .nav-links a{padding:14px 32px; width:100%;}
+    .menu-btn{display:block; background:none; border:1px solid var(--ink); padding:8px 12px; font-size:0.75rem; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; color:var(--ink);}
+    .hero-grid, .about-grid, .visit-grid{grid-template-columns:1fr;}
+    .hero-motif{order:-1; max-width:280px; margin:0 auto 12px;}
+    .collections-grid{grid-template-columns:1fr;}
+    .craft-grid{grid-template-columns:1fr; gap:36px;}
+    section{padding:64px 0;}
+    .about-panel{aspect-ratio:16/10;}
+  }
+</style>
+</head>
+<body class="stitch-bg">
+
+<header>
+  <nav class="nav">
+    <div class="brand">Maihar <em>Chikankari</em></div>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#collections">Collections</a>
+      <a href="#craft">The Craft</a>
+      <a href="#about">Our Story</a>
+      <a href="#visit">Visit Us</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Lucknow's Heritage Embroidery</div>
+        <h1>Threadwork worn <span class="accent">the way</span><br>it was meant to be.</h1>
+        <p class="lede">Maihar Chikankari brings authentic, hand-embroidered Lucknowi chikankari to Thane — kurtis, co-ord sets and anarkalis, each stitched by hand in the traditional style.</p>
+        <div class="hero-ctas">
+          <a href="#visit" class="btn btn-primary">Plan a Visit</a>
+          <a href="#collections" class="btn btn-ghost">View Collections</a>
+        </div>
+      </div>
+      <div class="hero-motif" aria-hidden="true">
+        <div class="ring"></div>
+        <svg viewBox="0 0 300 300">
+          <!-- stylised paisley / booti motif, hand-stitch aesthetic -->
+          <path class="motif-path" d="M150 60 C 90 60, 70 120, 100 165 C 120 195, 165 200, 175 175 C 185 150, 165 135, 150 145 C 138 153, 140 170, 155 172" />
+          <path class="motif-path rose" style="animation-delay:.4s" d="M150 40 C 220 40, 250 100, 220 150 C 200 185, 150 190, 145 155" />
+          <circle class="motif-path gold" style="animation-delay:.9s" cx="150" cy="150" r="95" stroke-dasharray="600" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="stitch-divider" aria-hidden="true">
+    <div class="rule"></div>
+    <svg width="46" height="20" viewBox="0 0 46 20"><path class="motif-path" style="animation-delay:.2s" d="M2 10 C 12 -2, 20 22, 30 10 C 36 3, 40 10, 44 10"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div class="about-panel">
+        <svg viewBox="0 0 300 380">
+          <path class="motif-path" d="M150 60 C 90 60, 70 120, 100 165 C 120 195, 165 200, 175 175 C 185 150, 165 135, 150 145" style="animation-delay:.1s"/>
+          <path class="motif-path rose" d="M150 40 C 220 40, 250 100, 220 150 C 200 185, 150 190, 145 155" style="animation-delay:.5s"/>
+          <path class="motif-path gold" d="M60 260 C 100 230, 160 230, 200 260 C 230 282, 230 320, 195 330 C 150 342, 90 330, 70 300" style="animation-delay:.9s"/>
+        </svg>
+      </div>
+      <div class="about-copy">
+        <div class="eyebrow">Our Story</div>
+        <h2>Rooted in Lucknow,<br>at home in Thane.</h2>
+        <p>Chikankari began centuries ago as delicate white-on-white needlework, worn by Mughal royalty on the finest muslin. That same patience and precision — every booti and jaali stitched by hand — is what we bring to every piece at Maihar Chikankari.</p>
+        <p>We work directly with artisans to keep the craft authentic, offering pieces that feel as considered for a wedding function as they do for a Sunday brunch.</p>
+        <div class="about-stats">
+          <div><span class="num">100%</span><span class="lbl">Hand Embroidered</span></div>
+          <div><span class="num">3</span><span class="lbl">Signature Lines</span></div>
+          <div><span class="num">Thane</span><span class="lbl">In-Store Only</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTIONS -->
+  <section id="collections">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">What We Carry</div>
+        <h2>Three ways to wear the craft</h2>
+        <p>Every piece is finished in-store — come by to feel the fabric and embroidery in hand before you choose.</p>
+      </div>
+      <div class="collections-grid">
+
+        <div class="coll-card">
+          <div class="coll-media">
+            <svg viewBox="0 0 100 100"><path class="motif-path" d="M50 15 C 20 15, 15 55, 35 75 C 48 88, 68 82, 65 65 C 62 50, 45 48, 42 60" /></svg>
+          </div>
+          <div class="coll-body">
+            <div class="tag">Everyday Elegance</div>
+            <h3>Kurtis</h3>
+            <p>Hand-embroidered kurtis in cotton and georgette, cut for easy, everyday wear without losing the detail.</p>
+          </div>
+        </div>
+
+        <div class="coll-card">
+          <div class="coll-media">
+            <svg viewBox="0 0 100 100"><path class="motif-path rose" d="M30 20 L70 20 L70 55 C 70 75, 30 75, 30 55 Z" /><path class="motif-path" d="M35 60 L65 60 L65 85 L35 85 Z" /></svg>
+          </div>
+          <div class="coll-body">
+            <div class="tag">Coordinated Sets</div>
+            <h3>Co-ord Sets</h3>
+            <p>Matching top-and-bottom sets with mirrored chikankari motifs — an easy, put-together look for any occasion.</p>
+          </div>
+        </div>
+
+        <div class="coll-card">
+          <div class="coll-media">
+            <svg viewBox="0 0 100 100"><path class="motif-path gold" d="M50 12 L70 40 L62 90 L38 90 L30 40 Z" /><path class="motif-path" d="M40 45 C 45 55, 55 55, 60 45" /></svg>
+          </div>
+          <div class="coll-body">
+            <div class="tag">Occasion Wear</div>
+            <h3>Anarkalis</h3>
+            <p>Flowing anarkalis with dense, traditional embroidery — made for weddings, festivals and celebrations.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CRAFT -->
+  <section class="craft" id="craft">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">The Craft</div>
+        <h2>What makes it chikankari</h2>
+        <p>A tradition of needlework passed down through generations of artisans, still practised almost exactly as it was centuries ago.</p>
+      </div>
+      <div class="craft-grid">
+        <div class="craft-item">
+          <svg viewBox="0 0 64 64" fill="none" stroke-width="1.4"><circle cx="32" cy="32" r="22"/><path d="M20 32 C 24 20, 40 20, 44 32 C 40 44, 24 44, 20 32 Z"/></svg>
+          <h3>Hand-Traced Motifs</h3>
+          <p>Every design is block-printed and then embroidered entirely by hand, booti by booti.</p>
+        </div>
+        <div class="craft-item">
+          <svg viewBox="0 0 64 64" fill="none" stroke-width="1.4"><path d="M12 32 h40 M32 12 v40" stroke-dasharray="4 4"/><circle cx="32" cy="32" r="6"/></svg>
+          <h3>Jaali & Shadow Work</h3>
+          <p>Fine net-like jaali stitches and shadow work give each piece its signature delicacy.</p>
+        </div>
+        <div class="craft-item">
+          <svg viewBox="0 0 64 64" fill="none" stroke-width="1.4"><path d="M14 40 L26 24 L38 36 L50 18" /><circle cx="50" cy="18" r="3"/></svg>
+          <h3>Artisan-Led</h3>
+          <p>Sourced from artisan clusters who have practised this embroidery for generations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section id="visit">
+    <div class="wrap visit-grid">
+      <div class="visit-card">
+        <div class="eyebrow">Come See Us</div>
+        <h2>Visit the store</h2>
+        <div class="visit-line">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <p>Shop No. 3, Prasad Building, Ram Maruti Rd,<br>next to Cream Chills, Naupada,<br>Thane West, Thane, Maharashtra 400602</p>
+        </div>
+        <div class="visit-line">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <p>In-store shopping only — please visit us to browse the current collection and try pieces on.</p>
+        </div>
+        <p class="visit-note">Store timings may vary by day — we'd recommend calling ahead or checking our listing before visiting.</p>
+      </div>
+      <div class="map-frame">
+        <div class="map-pin">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <span>Naupada, Thane West</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div>
+      <div class="brand">Maihar <em>Chikankari</em></div>
+      <p>Authentic Lucknowi Chikankari — Kurtis · Co-ord Sets · Anarkalis</p>
+    </div>
+    <p>&copy; <span id="year"></span> Maihar Chikankari, Thane. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+</body>
+</html>
